@@ -24,5 +24,14 @@ pipeline {
              }
           } 
         }
+        
+        stage('Docker Build and push'{
+           steps{
+             sh 'printenv'
+             sh 'docker build -t prabhakar732/numeric-app:"$GIT_COMMIT"'
+             sh ' docker push prabhakar732/numeric-app:"$GIT_COMMIT"' 
+           }
+        }
+        
     }
 }
