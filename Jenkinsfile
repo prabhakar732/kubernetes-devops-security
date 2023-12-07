@@ -30,6 +30,21 @@ pipeline {
        sh "mvn org.pitest:pitest-maven:mutationCoverage"
       }
     }
+    
+      stage('SonarQube - SAST') {
+       steps {
+         withSonarQubeEnv('SonarQube') {
+           sh "mvn sonar:sonar -Dsonar.projectKey=numeric-application -Dsonar.host.url=http://20.219.86.86:9000"
+         }
+         timeout(time: 2, unit: 'MINUTES') {
+           script {
+             waitForQualityGate abortPipeline: true
+          }
+         }
+       }
+     }
+    
+    
         
         stage('Docker Build and Push') {
  		     steps {
