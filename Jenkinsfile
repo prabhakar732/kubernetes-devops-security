@@ -33,7 +33,7 @@ pipeline {
     
       stage('SonarQube - SAST') {
        steps {
-         withSonarQubeEnv('SonarQube') {
+         withSonarQubeEnv('sonarqube') {
             echo "entered to sonarqube"
            sh "mvn sonar:sonar -Dsonar.projectKey=kubernetes-devops-security -Dsonar.host.url=http://20.219.86.86:9000 -Dsonar.login=sqp_89c206484c679bb0c5bc5a36d5435f6b1a5ebf15"
          }
