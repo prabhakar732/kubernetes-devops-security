@@ -34,7 +34,6 @@ pipeline {
       stage('SonarQube - SAST') {
        steps {
          withSonarQubeEnv('sonarqube') {
-            echo "entered to sonarqube"
            sh "mvn sonar:sonar -Dsonar.projectKey=kubernetes-devops-security -Dsonar.host.url=http://20.219.86.86:9000 -Dsonar.login=sqp_89c206484c679bb0c5bc5a36d5435f6b1a5ebf15"
          }
          timeout(time: 2, unit: 'MINUTES') {
@@ -49,7 +48,9 @@ pipeline {
         
         stage('Docker Build and Push') {
  		     steps {
+ 		     echo "before to docker"
          withDockerRegistry(credentialsId: "dockerhub", url: "") {
+         echo "entered to docker"
            sh 'printenv'
            sh 'sudo docker build -t prabhakar732/numeric-app:""$GIT_COMMIT"" .'
            sh 'docker push prabhakar732/numeric-app:""$GIT_COMMIT""'
