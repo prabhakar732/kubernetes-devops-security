@@ -52,8 +52,8 @@ pipeline {
          withDockerRegistry(credentialsId: "dockerhub", url: "") {
          echo "entered to docker"
            sh 'printenv'
-           sh 'docker build -t numeric-app:""$GIT_COMMIT"" .'
-           sh 'docker push numeric-app:""$GIT_COMMIT""'
+           sh 'docker build -t kirantej32/numeric-app:""$GIT_COMMIT"" .'
+           sh 'docker push kirantej32/numeric-app:""$GIT_COMMIT""'
          }
        }
         }
