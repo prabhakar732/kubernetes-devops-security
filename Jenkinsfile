@@ -43,9 +43,7 @@ pipeline {
          }
        }
      }
-    
-    
-        
+            
         stage('Docker Build and Push') {
  		     steps {
  		     echo "before to docker"
@@ -58,5 +56,14 @@ pipeline {
        }
         }
         
+        stage('Scan Docker Image') {
+ 		   steps {
+ 		     script{
+                sh 'wget -O hadolint https://github.com/hadolint/hadolint/releases/download/v2.7.0/hadolint-Linux-x86_64'
+                sh 'chmod +x hadolint' 
+                sh './hadolint kirantej32/numeric-app:""$GIT_COMMIT""'                                  
+ 		         }
+ 		       }
+             }
     }
 }
