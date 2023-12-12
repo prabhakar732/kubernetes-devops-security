@@ -54,6 +54,15 @@ pipeline {
  		       }
              }
             
+         stage('OPA') {
+ 		   steps {
+ 		     script{
+				sh 'docker run --rm -v $(pwd):/project openpolicyagent/conftest test --policy authz.rego Dockerfile'                                
+ 		         }
+ 		       }
+             }
+            
+            
         stage('Docker Build and Push') {
  		     steps {
  		     echo "before to docker"
