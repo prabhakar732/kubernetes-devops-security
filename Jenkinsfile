@@ -44,15 +44,15 @@ pipeline {
        }
      }
      
- #         stage('Scan Docker Image') {
- #		   steps {
- #		     script{
- #               sh 'wget -O hadolint https://github.com/hadolint/hadolint/releases/download/v2.7.0/hadolint-Linux-x86_64'
- #               sh 'chmod +x hadolint' 
- #               sh './hadolint Dockerfile'                                  
- #		         }
- #		       }
- #            }
+ //        stage('Scan Docker Image') {
+ //		   steps {
+ //		     script{
+ //               sh 'wget -O hadolint https://github.com/hadolint/hadolint/releases/download/v2.7.0/hadolint-Linux-x86_64'
+ //               sh 'chmod +x hadolint' 
+ //              sh './hadolint Dockerfile'                                  
+ //		         }
+ //		       }
+ //            }
             
          stage('OPA') {
  		   steps {
