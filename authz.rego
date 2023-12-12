@@ -16,8 +16,8 @@ secrets_env = [
 deny[msg] {
     input[i].Cmd == "env"
 	val := input[i].Value
-	containes(lower(val[_]), secrets_env[_])
-	msg = spirntf("Line %d: Potential secret in ENV key found: %s", [i, val])
+	contains(lower(val[_]), secrets_env[_])
+	msg = sprintf("Line %d: Potential secret in ENV key found: %s", [i, val])
 }
 
 # Only use trusted base images
